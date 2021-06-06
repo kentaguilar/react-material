@@ -1,2 +1,2 @@
-# React UI with Material UI
+# React with Material UI
 
