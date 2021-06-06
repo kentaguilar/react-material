@@ -9,8 +9,22 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { green, orange } from '@material-ui/core/colors';
 import { PlayCircleFilledWhite } from '@material-ui/icons';
+import 'fontsource-roboto';
+
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+import AppBar from '@material-ui/core/AppBar';
+import ToolBar from '@material-ui/core/ToolBar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +34,22 @@ const useStyles = makeStyles({
     borderRadius: 15,
     color: PlayCircleFilledWhite,
     padding: '5px 30px'
+  }
+})
+
+const theme = createMuiTheme({
+  typography: {
+    h2: {
+      fontSize:36
+    }
+  },
+  palette: {
+    primary: {
+      main: green[400]
+    },
+    secondary: {
+      main: orange[400]
+    }
   }
 })
 
@@ -37,7 +67,7 @@ function CheckboxExample(){
           <Checkbox
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
-            color="primary"
+            color="secondary"
             icon={<DeleteIcon />}
             checkedIcon={<SaveIcon />}
             inputProps={{
@@ -56,36 +86,76 @@ function CheckboxExample(){
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <ButtonStyled/>
-        <TextField 
-          variant="filled"
-          color="secondary"
-          type="email"
-          label="The Time"
-          placeholder="test@test.com"
-        />
-        <CheckboxExample />
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <div className="App">
+          <header className="App-header">
+            
+            <AppBar color="secondary">
+              <ToolBar>
+                <IconButton>
+                  <MenuIcon />
+                </IconButton>
 
-        <ButtonGroup variant="contained" color="primary">
-          
-          <Button 
-            startIcon={<SaveIcon/>} onClick={() => alert('hello')} >
-            Save
-          </Button>
+                <Typography variant="h6">
+                    MUI Themeing
+                </Typography>
 
-          <Button 
-            startIcon={<DeleteIcon/>} onClick={() => alert('hello')}>
-            Discard
-          </Button>
+                <Button>
+                  Login
+                </Button>                
+              </ToolBar>
+            </AppBar>
 
-        </ButtonGroup>
+            <Typography variant="h2" component="div">
+              Welcome to MUI
+            </Typography>
+            <Typography variant="subtitle1">
+              Learn how to use Material UI
+            </Typography>
 
-        <img src={logo} className="App-logo" alt="logo" />       
-      </header>
-    </div>
+            <ButtonStyled/>
+
+            <Grid container spacing={4} justify="center">
+              <Grid item xs={3} sm={6}> 
+                <Paper style={{height:75, width:'100%'}} />
+              </Grid>
+              <Grid item xs={3} sm={6}>
+                <Paper style={{height:75, width:'100%'}} />
+              </Grid>
+              <Grid item xs={3} sm={6}>
+                <Paper style={{height:75, width:'100%'}} />
+              </Grid>
+            </Grid>
+
+            <TextField 
+              variant="filled" 
+              color="secondary"
+              type="email"
+              label="The Time"
+              placeholder="test@test.com"
+            />
+            <CheckboxExample />
+
+            <ButtonGroup variant="contained" color="primary">
+              
+              <Button 
+                startIcon={<SaveIcon/>} onClick={() => alert('hello')} >
+                Save
+              </Button>
+
+              <Button 
+                startIcon={<DeleteIcon/>} onClick={() => alert('hello')}>
+                Discard
+              </Button>
+
+            </ButtonGroup>
+
+            <img src={logo} className="App-logo" alt="logo" />       
+          </header>
+        </div>
+      </Container>
+    </ThemeProvider>
   );
 }
 
