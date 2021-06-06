@@ -1,32 +1,83 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField';
+
+import { makeStyles } from '@material-ui/core/styles';
+import { PlayCircleFilledWhite } from '@material-ui/icons';
+
+const useStyles = makeStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B, #FF8E53)',
+    border: 0,
+    marginBottom: 15,
+    borderRadius: 15,
+    color: PlayCircleFilledWhite,
+    padding: '5px 30px'
+  }
+})
+
+function ButtonStyled(){
+  const classes = useStyles();
+  return <Button className={classes.root}>Test Styled Button</Button>
+}
+
+function CheckboxExample(){
+  const [checked, setChecked] = React.useState(true)
+  return(
+    <div>
+      <FormControlLabel 
+        control={
+          <Checkbox
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+            color="primary"
+            icon={<DeleteIcon />}
+            checkedIcon={<SaveIcon />}
+            inputProps={{
+              'arial-label': 'secondary checkbox'
+            }}
+          />
+        }
+
+        label="Testing Checkbox"
+      />
+
+      
+    </div>
+  )
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ButtonGroup>
+        
+        <ButtonStyled/>
+        <TextField 
+          variant="filled"
+          color="secondary"
+          type="email"
+          label="The Time"
+          placeholder="test@test.com"
+        />
+        <CheckboxExample />
+
+        <ButtonGroup variant="contained" color="primary">
           
           <Button 
-            startIcon={<SaveIcon/>}
-            size="large"
-            style={{
-              fontSize:24
-            }}
-            onClick={() => alert('hello')} variant="contained" color="primary">
+            startIcon={<SaveIcon/>} onClick={() => alert('hello')} >
             Save
           </Button>
 
           <Button 
-            startIcon={<SaveIcon/>}
-            size="large"
-            style={{
-              fontSize:24
-            }}
-            onClick={() => alert('hello')} variant="contained" color="secondary">
+            startIcon={<DeleteIcon/>} onClick={() => alert('hello')}>
             Discard
           </Button>
 
