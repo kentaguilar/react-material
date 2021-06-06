@@ -43,14 +43,14 @@ const theme = createMuiTheme({
       fontSize:36
     }
   },
-  palette: {
-    primary: {
-      main: green[400]
-    },
-    secondary: {
-      main: orange[400]
-    }
-  }
+  // palette: {
+  //   primary: {
+  //     main: green[400]
+  //   },
+  //   secondary: {
+  //     main: orange[400]
+  //   }
+  // }
 })
 
 function ButtonStyled(){
@@ -91,7 +91,7 @@ function App() {
         <div className="App">
           <header className="App-header">
             
-            <AppBar color="secondary">
+            <AppBar color="primary">
               <ToolBar>
                 <IconButton>
                   <MenuIcon />
